@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpringsWortex</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            margin-top: 10px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #38bdf8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+        }
+
+        .server-ip {
+            background: #1e293b;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            border: 1px solid #334155;
+            display: inline-block;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .server-ip:hover {
+            border-color: #38bdf8;
+            background: #27354f;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+            background-color: #1e293b;
+            color: #f8fafc;
+            border: 1px solid #334155;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            background-color: #334155;
+            border-color: #38bdf8;
+        }
+
+        .tab-btn.active {
+            background-color: #0284c7;
+            border-color: #38bdf8;
+            box-shadow: 0 0 15px rgba(2, 132, 199, 0.4);
+        }
+
+        .content-container {
+            width: 100%;
+            max-width: 800px;
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid #334155;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        h2 {
+            color: #38bdf8;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #334155;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #7dd3fc;
+            margin: 15px 0 8px 0;
+            font-size: 1.2rem;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+            color: #cbd5e1;
+        }
+
+        .warning-section {
+            margin-top: 20px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .warning-section h3 {
+            color: #f87171;
+            margin-top: 0;
+        }
+
+        .donate-card {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: 0.2s;
+        }
+
+        .donate-card:hover {
+            border-color: #0284c7;
+            transform: translateY(-2px);
+        }
+
+        .donate-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #38bdf8;
+            margin-bottom: 5px;
+        }
+
+        .donate-price {
+            color: #4ade80;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .donate-perks {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            margin-bottom: 10px;
+        }
+
+        .donate-contact {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+            background: #0f172a;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px dashed #38bdf8;
+        }
+
+        .donate-contact a {
+            color: #38bdf8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .donate-contact a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>springswortex</h1>
+        <div class="server-ip" onclick="navigator.clipboard.writeText('springswortex.aternos.me'); alert('IP скопирован в буфер обмена!');" title="Нажмите, чтобы скопировать">
+            IP: <strong>springswortex.aternos.me</strong>
+        </div>
+    </header>
+
+    <div class="buttons-container">
+        <button class="tab-btn active" onclick="switchTab('rules')">📜 Правила сервера</button>
+        <button class="tab-btn" onclick="switchTab('donate')">💎 Донат</button>
+    </div>
+
+    <div class="content-container">
+        <!-- Секция правил -->
+        <div id="rules" class="section active">
+            <h2>📜 Правила сервера</h2>
+            
+            <h3>1. Оскорбления</h3>
+            <ul>
+                <li><strong>1.1</strong> Оскорбление в матной форме — мут на 1 день.</li>
+                <li><strong>1.2</strong> Оскорбление — мут на 3–6 часов.</li>
+                <li><strong>1.3</strong> Оскорбление администрации — бан на 14 дней / мут на 50 дней.</li>
+            </ul>
+
+            <h3>2. Нарушения проекта</h3>
+            <ul>
+                <li><strong>2.1</strong> Упоминание другого сервера — бан на 30–40 дней.</li>
+                <li><strong>2.2</strong> Игра с читами — бан на 50 дней.</li>
+                <li><strong>2.3</strong> Отказ от проверки — бан на 50 дней.</li>
+                <li><strong>2.4</strong> Признание на проверке — бан на 30 дней.</li>
+                <li><strong>2.5</strong> Признание в чате — бан на 10 дней.</li>
+                <li><strong>2.6</strong> Оскорбление проекта — бан на 60 дней.</li>
+            </ul>
+
+            <h3>3. Взлом и мошенничество</h3>
+            <ul>
+                <li><strong>3.1</strong> Взлом аккаунта — бан на 50 дней по IP.</li>
+                <li><strong>3.2</strong> Попытка взлома аккаунта — бан на 50 дней.</li>
+                <li><strong>3.3</strong> Выдача себя за администрацию — бан на 40 дней.</li>
+                <li><strong>3.4</strong> Обмен ресурсов за реальные деньги — бан на 50 дней по IP.</li>
+            </ul>
+
+            <div class="warning-section">
+                <h3>⚠️ Только для модерации</h3>
+                <ul>
+                    <li><strong>4.1</strong> Взятка — снятие с должности.</li>
+                    <li><strong>4.2</strong> Бан без проверки — снятие с должности.</li>
+                    <li><strong>4.3</strong> Проведение проверки без записи — снятие с должности.</li>
+                    <li><strong>4.4</strong> Мут без доказательств — снятие с должности.</li>
+                    <li><strong>4.5</strong> Разбан без разрешения администрации — снятие с должности.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Секция доната -->
+        <div id="donate" class="section">
+            <h2>💎 Донат привилегии</h2>
+
+            <div class="donate-card">
+                <div class="donate-title">MINER</div>
+                <div class="donate-price">15 грн</div>
+                <div class="donate-perks">Дает 1000 монет (еженедельно) +1 sethome + уникальный кит</div>
+            </div>
+
+            <div class="donate-card">
+                <div class="donate-title">SHADOW</div>
+                <div class="donate-price">30 грн</div>
+                <div class="donate-perks">Дает 2000 монет (еженедельно) +2 sethome + уникальный кит</div>
+            </div>
+
+            <div class="donate-card">
+                <div class="donate-title">VORTEX</div>
+                <div class="donate-price">50 грн</div>
+                <div class="donate-perks">Дает 4000 монет (еженедельно) +3 sethome + /feed + уникальный кит</div>
+            </div>
+
+            <div class="donate-card">
+                <div class="donate-title">STORM</div>
+                <div class="donate-price">70 грн</div>
+                <div class="donate-perks">Дает 5000 монет (еженедельно) +4 sethome + 2 уникальных кита + /feed /heal /craft</div>
+            </div>
+
+            <div class="donate-card">
+                <div class="donate-title">WARLORD</div>
+                <div class="donate-price">100 грн</div>
+                <div class="donate-perks">Дает 8000 монет (еженедельно) +5 sethome + 2 уникальных кита + /feed /heal /craft /ec</div>
+            </div>
+
+            <div class="donate-card">
+                <div class="donate-title">VAMPIRE</div>
+                <div class="donate-price">150 грн</div>
+                <div class="donate-perks">Дает 12000 монет (еженедельно) +6 sethome + 3 уникальных кита + /feed /heal /craft /day /night</div>
+            </div>
+
+            <div class="donate-card">
+                <div class="donate-title">SUPREME</div>
+                <div class="donate-price">200 грн</div>
+                <div class="donate-perks">Дает 15000 монет (еженедельно) +8 sethome + 3 уникальных кита + /feed /heal /craft /day /night /fly</div>
+            </div>
+
+            <div class="donate-card">
+                <div class="donate-title">PHOENIX</div>
+                <div class="donate-price">300 грн</div>
+                <div class="donate-perks">Дает 20000 монет (еженедельно) +10 sethome + 3 уникальных кита + /feed /heal /craft /day /night /fly + кастом цвет ника</div>
+            </div>
+
+            <div class="donate-contact">
+                По поводу покупки писать в Telegram: <a href="https://t.me/HE_RAB" target="_blank">@HE_RAB</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            // Убираем активный класс со всех кнопок и секций
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+
+            // Включаем нужную кнопку и секцию
+            if (tabId === 'rules') {
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                document.getElementById('rules').classList.add('active');
+            } else if (tabId === 'donate') {
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                document.getElementById('donate').classList.add('active');
+            }
+        }
+    </script>
+
+</body>
+</html>
+
